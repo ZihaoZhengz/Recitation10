@@ -15,7 +15,10 @@ package edu.cmu.cs.cs214.rec04;
 public class DelegationSortedIntList {
     // the number of attempted element insertions
     private int totalAdded;
-
+    private final SortedIntList sl;
+    public DelegationSortedIntList(){
+        sl=new SortedIntList();
+    }
     /**
      * Gets the total number of attempted int insertions to the list since it.
      * was created.
@@ -25,6 +28,23 @@ public class DelegationSortedIntList {
     public int getTotalAdded()
     {
         return totalAdded;
+    }
+    public void add(int num){
+        totalAdded++;
+        sl.add(num);
+    }
+    public void addAll(DelegationSortedIntList dl){
+        totalAdded+=dl.getSL().size();
+        sl.addAll(dl.getSL());
+    }
+    public int get(int index){
+        return sl.get(index);
+    }
+    public SortedIntList getSL(){
+        return sl;
+    }
+    public int size(){
+        return sl.size();
     }
 
 }
